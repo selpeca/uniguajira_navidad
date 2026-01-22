@@ -14,37 +14,19 @@ function enviarCorreoIndividual(numeroFila) {
   const ss = SpreadsheetApp.getActive();
   const sheet = ss.getSheetByName("Base de datos");
   const row = sheet.getRange(numeroFila, 1, 1, sheet.getLastColumn()).getValues()[0];
-
+  
   procesarEnvio(sheet, row, numeroFila);
 }
 function procesarEnvio(sheet, row, rowNumber) {
 
-  const comunidad        = row[0];
-  const nombreNino       = row[1];
-  const edad             = row[2];
-  const sexo             = row[3];
   const nombreFuncionario = row[4];
   const correoFuncionario = row[5];
-  const medio             = row[6];  // si tiene valor, NO se debe enviar
 
   // Validación mínima
-  if (!correoFuncionario || medio) return;
+  if (!correoFuncionario) return;
 
-  // Selección del template
-  let template;
-  if (nombreNino) {
-    template = HtmlService.createTemplateFromFile("template.html");
-    template.nombreFuncionario = nombreFuncionario;
-    template.nombreNino = nombreNino;
-    template.edad = edad;
-    template.sexo = sexo;
-    template.comunidad = comunidad;
-
-  } else {
-    template = HtmlService.createTemplateFromFile("template_blank.html");
-    template.nombreFuncionario = nombreFuncionario;
-    template.comunidad = comunidad;
-  }
+  template = HtmlService.createTemplateFromFile("template_agradecimiento.html");
+  template.nombreFuncionario = nombreFuncionario;
 
   const mensaje = template.evaluate().getContent();
 
