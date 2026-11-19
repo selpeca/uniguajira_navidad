@@ -1,60 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
-    <!-- Fuente Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desde Uniguajira, una Navidad para compartir y sonreír</title>
   </head>
 
-  <body style="margin:0; padding:0; font-family:'Poppins', sans-serif; background:#f5f5f5;">
+  <!--
+    Plantilla basada en CI-F-07 (Plantilla para presentaciones institucionales).
+    Paleta: teal #00A5B2 · turquesa #00CBB0 · teal oscuro #007F89 · sol #FFB100 · buganvilla #D6338A
+    Imágenes incrustadas (inlineImages): cid:escena -> img/escena.jpg, cid:sellos -> img/sellos.png
+  -->
 
-    <table style="max-width:600px; margin:auto; background:white; padding:0; border-radius:14px; overflow:hidden; border:1px solid #eee;">
-      
-      <!-- Header con color institucional -->
+  <body style="margin:0; padding:0; background:#eef3f4; font-family:'Century Gothic', CenturyGothic, AppleGothic, 'URW Gothic', Arial, sans-serif;">
+
+    <!-- Preheader -->
+    <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; color:#eef3f4; line-height:1px;">
+      <?= nombreNino ?> de la comunidad <?= comunidad ?> espera tu regalo esta Navidad.
+    </div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f4;">
       <tr>
-        <td style="text-align: center; padding: 0;">
-          <img src="https://raw.githubusercontent.com/selpeca/uniguajira_navidad_2025/refs/heads/main/REGALA-SONRISAS.jpg" style="width: 100%; height: auto; max-width: 600px; display: block; margin: 0 auto;" />
+        <td align="center" style="padding:24px 12px;">
+
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
+                 style="width:100%; max-width:600px; background:#00A5B2; border-radius:16px; overflow:hidden;">
+
+            <!-- ============ ENCABEZADO ============ -->
+            <tr>
+              <td bgcolor="#00A5B2" style="background:#00A5B2; padding:30px 32px 6px 32px; color:#ffffff;">
+
+                <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#d9f6f3; font-weight:bold;">
+                  Dirección de Extensión y Proyección Social
+                </div>
+
+                <div style="font-size:30px; line-height:36px; font-weight:bold; padding-top:10px;">
+                  Desde Uniguajira, una Navidad
+                  <span style="color:#FFB100;">para compartir y sonreír</span>
+                </div>
+
+                <!-- Línea divisoria estilo CI-F-07 -->
+                <div style="width:120px; height:3px; background:#ffffff; margin:16px 0 14px 0; font-size:0; line-height:0;">&nbsp;</div>
+
+                <div style="font-size:15px; line-height:22px; color:#ffffff;">
+                  Únete a la campaña de donación de regalos para que en esta Navidad
+                  regales sonrisas y alegría a los niños y niñas de La Guajira.
+                </div>
+
+              </td>
+            </tr>
+
+            <!-- Escena institucional (edificio, sol, cactus con luces) -->
+            <tr>
+              <td style="padding:0; line-height:0; font-size:0;">
+                <img src="cid:escena" width="600" alt="Universidad de La Guajira en Navidad"
+                     style="display:block; width:100%; max-width:600px; height:auto; border:0;">
+              </td>
+            </tr>
+
+            <!-- ============ TARJETA BLANCA (estilo diapositiva 2 de CI-F-07) ============ -->
+            <tr>
+              <td bgcolor="#00A5B2" style="background:#00A5B2; padding:0 16px;">
+
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
+                       style="background:#ffffff; border-radius:0 0 18px 48px;">
+                  <tr>
+                    <td style="padding:30px 28px 32px 28px; color:#222222; font-size:15px; line-height:1.65;">
+
+                      <p style="margin:0 0 14px 0; font-size:17px;">
+                        Hola <strong style="color:#007F89;"><?= nombreFuncionario ?></strong>,
+                      </p>
+
+                      <p style="margin:0 0 14px 0;">
+                        Mi nombre es <strong style="color:#D6338A;"><?= nombreNino ?></strong>. Soy
+                        <strong><?= String(sexo || '').trim().toUpperCase().charAt(0) === 'F' ? 'una niña' : 'un niño' ?></strong>
+                        de <strong><?= /^\d+$/.test(String(edad).trim()) ? String(edad).trim() + (String(edad).trim() === '1' ? ' año' : ' años') : edad ?></strong>
+                        y hago parte de la comunidad <strong><?= comunidad ?></strong>.
+                      </p>
+
+                      <p style="margin:0 0 22px 0;">
+                        Mi deseo es que todos los niños podamos disfrutar una Navidad
+                        llena de juegos y muchos regalos.
+                      </p>
+
+                      <!-- Llamado a la acción -->
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td align="center" bgcolor="#FFB100"
+                              style="background:#FFB100; border-radius:30px; padding:14px 18px; color:#3a2a00; font-size:16px; font-weight:bold; line-height:22px;">
+                            ¡Hoy te invito a donar un regalo y despertar una sonrisa!
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Fecha y lugar -->
+                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px;">
+                        <tr>
+                          <td style="padding:14px 16px; background:#e6f7f6; border-left:5px solid #00CBB0; border-radius:6px; font-size:14px; line-height:1.6;">
+                            <strong style="color:#007F89;">Fecha límite de entrega:</strong> <?= fechaLimite ?><br>
+                            <strong style="color:#007F89;">Lugar de entrega:</strong> <?= lugarEntrega ?>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <p style="margin:26px 0 0 0;">
+                        Con gratitud,<br>
+                        <strong style="color:#007F89;">Dirección de Extensión y Proyección Social</strong><br>
+                        Universidad de La Guajira
+                      </p>
+
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+            <!-- ============ PIE ============ -->
+            <tr>
+              <td bgcolor="#00A8AE" style="background:#00A8AE; padding:18px 20px 20px 20px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td valign="middle" style="color:#ffffff; font-size:12px; line-height:18px;">
+                      <strong>Universidad de La Guajira</strong><br>
+                      Campaña Institucional <?= anio ?>
+                    </td>
+                    <td valign="middle" align="right" width="170" style="width:170px;">
+                      <img src="cid:sellos" width="170" alt="Universidad de La Guajira 50 años – Acreditada en Alta Calidad – ICONTEC – IQNet"
+                           style="display:block; width:170px; height:auto; border:0;">
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+
         </td>
       </tr>
-
-      <!-- Contenido principal -->
-      <tr>
-        <td style="padding:30px; color:#333; font-size:15px; line-height:1.6;">
-          
-          <p style="margin-top:0;">
-            Hola <strong style="color:#cc5e50;"><?= nombreFuncionario ?></strong>,
-          </p>
-
-          <p>
-            Mi nombre es <strong><?= nombreNino ?></strong>. Soy 
-            <strong><?= sexo == "F" ? "una niña" : "un niño" ?></strong> 
-            de <strong><?= edad ?></strong> y hago parte de la comunidad
-            <strong><?= comunidad ?></strong>.
-          </p>
-
-          <p>
-            Mi deseo es que todos los niños podamos disfrutar una Navidad
-            llena de juegos y muchos regalos.
-          </p>
-
-          <p style="color:#cc5e50; font-weight:600; font-size:16px;">
-            ¡Hoy te invito a donar un regalo y despertar una sonrisa!
-          </p>
-
-          <div style="margin-top:25px; padding:15px; background:#e2a54222; border-left:5px solid #e2a542; border-radius:6px;">
-            <strong style="color:#e2a542;">Fecha límite de entrega:</strong> Jueves 11 de Diciembre del 2025.<br>
-            <strong style="color:#e2a542;">Lugar de entrega:</strong> Bloque 1, Piso 1, Dirección de Extensión y Proyección Social.
-          </div>
-
-        </td>
-      </tr>
-
-      <!-- Footer institucional -->
-      <tr>
-        <td style="background:#cc5e50; padding:18px; text-align:center; color:white; font-size:12px;">
-          Universidad de La Guajira – Campaña Institucional 2025
-        </td>
-      </tr>
-
     </table>
 
   </body>
