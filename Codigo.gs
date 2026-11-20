@@ -1,29 +1,34 @@
 // ===================== CONFIGURACIÓN 2026 =====================
 const CONFIG = {
   hoja: "Base de datos",
-  asunto: "Únete a la campaña: Desde Uniguajira, una Navidad para Compartir y Sonreír",
+  asunto: "Abraza la Navidad con Uniguajira: hoy te invito a donar un regalo",
   remitente: "Dirección de Extensión y Proyección Social",
-  fechaLimite: "Por definir",   // TODO: ej. "Jueves 10 de diciembre de 2026"
-  lugarEntrega: "Bloque 1, Piso 1, Dirección de Extensión y Proyección Social",
-  anio: 2026,
-  colEnvio: 9,                  // Columna I: fecha/hora de envío o error
+  // Estos datos ya están en la imagen de Canva; aquí solo se usan para la versión en texto plano
+  fechaLimite: "30 de noviembre de 2026",
+  lugarEntrega: "Dirección de Extensión y Proyección Social (Bloque Administrativo B Cristóbal Fonseca Siosi) " +
+                "o Emisora institucional Uniguajira Estéreo (Calle 8 # 10-140)",
+  // Carpeta pública con los cortes del diseño (arriba.jpg, medio.jpg, abajo.jpg)
+  imgBase: "https://raw.githubusercontent.com/selpeca/uniguajira_navidad/main/img/2026/",
+  colEnvio: 9,                  // Columna I: Fecha último envío (o error)
   tiempoMaximoMs: 5 * 60 * 1000 // Se detiene antes del límite de 6 min de Apps Script
 };
 
-// Imágenes incrustadas en el correo (src="cid:escena" y src="cid:sellos" en template.html)
-const IMAGENES = {
-  escena: "https://raw.githubusercontent.com/selpeca/uniguajira_navidad/main/img/escena.jpg",
-  sellos: "https://raw.githubusercontent.com/selpeca/uniguajira_navidad/main/img/sellos.png"
-};
+// ===================== FORMATO DE DATOS =====================
+// "PAULIMAR ISABEL JUSAYU" -> "Paulimar Isabel Jusayu"
+function formatearNombre(texto) {
+  const minusculas = ["de", "del", "la", "las", "los", "y"];
+  return String(texto || "").trim().toLowerCase().split(/\s+/)
+    .map((p, i) => (i > 0 && minusculas.indexOf(p) >= 0) ? p : p.charAt(0).toUpperCase() + p.slice(1))
+    .join(" ");
+}
 
-let _imagenesCache = null;
-function cargarImagenes() {
-  if (_imagenesCache) return _imagenesCache;
-  _imagenesCache = {};
-  Object.keys(IMAGENES).forEach(clave => {
-    _imagenesCache[clave] = UrlFetchApp.fetch(IMAGENES[clave]).getBlob().setName(clave);
-  });
-  return _imagenesCache;
+// GENERO "NIÑA"/"NIÑO" (también F/M) + EDAD "1 AÑO" / 7 -> "una niña de 1 año"
+function describirNino(genero, edad) {
+  const g = String(genero || "").trim().toUpperCase();
+  const esNina = g.indexOf("NIÑA") === 0 || g.indexOf("NINA") === 0 || g.charAt(0) === "F";
+  let e = String(edad || "").trim().toLowerCase();
+  if (/^\d+$/.test(e)) e += (e === "1" ? " año" : " años");
+  return (esNina ? "una niña" : "un niño") + (e ? " de " + e : "");
 }
 
 // ===================== ENVÍO MASIVO (INVITACIÓN) =====================
@@ -72,8 +77,8 @@ function procesarEnvio(sheet, row, rowNumber) {
 
   const comunidad         = row[0]; // A
   const nombreNino        = row[1]; // B
-  const edad              = row[2]; // C
-  const sexo              = row[3]; // D
+  const edad              = row[2]; // C: EDAD (ej. "1 AÑO")
+  const sexo              = row[3]; // D: GENERO (NIÑA / NIÑO)
   const nombreFuncionario = row[4]; // E
   const correoFuncionario = row[5]; // F
   const medio             = row[6]; // G: si tiene valor (regalo, transferencia, NO ENVIAR CORREO...) NO se envía
@@ -85,22 +90,24 @@ function procesarEnvio(sheet, row, rowNumber) {
     return;
   }
 
+  const funcionario = formatearNombre(nombreFuncionario);
+  const nino        = formatearNombre(nombreNino);
+  const comunidadTx = formatearNombre(comunidad);
+  const descripcion = describirNino(sexo, edad);
+
   const template = HtmlService.createTemplateFromFile("template.html");
-  template.nombreFuncionario = nombreFuncionario;
-  template.nombreNino        = nombreNino;
-  template.edad              = edad;
-  template.sexo              = sexo;
-  template.comunidad         = comunidad;
-  template.fechaLimite       = CONFIG.fechaLimite;
-  template.lugarEntrega      = CONFIG.lugarEntrega;
-  template.anio              = CONFIG.anio;
+  template.imgBase           = CONFIG.imgBase;
+  template.nombreFuncionario = funcionario;
+  template.nombreNino        = nino;
+  template.descripcion       = descripcion;
+  template.comunidad         = comunidadTx;
 
   const mensaje = template.evaluate().getContent();
 
   // Versión en texto plano (para clientes que no muestran HTML)
   const textoPlano =
-    "Hola " + nombreFuncionario + ",\n\n" +
-    "Mi nombre es " + nombreNino + " y hago parte de la comunidad " + comunidad + ".\n" +
+    "¡Hola, " + funcionario + "!\n\n" +
+    "Mi nombre es " + nino + ". Soy " + descripcion + " y hago parte de la comunidad " + comunidadTx + ".\n" +
     "¡Hoy te invito a donar un regalo y despertar una sonrisa!\n\n" +
     "Fecha límite de entrega: " + CONFIG.fechaLimite + "\n" +
     "Lugar de entrega: " + CONFIG.lugarEntrega + "\n\n" +
@@ -113,7 +120,6 @@ function procesarEnvio(sheet, row, rowNumber) {
       textoPlano,
       {
         htmlBody: mensaje,
-        inlineImages: cargarImagenes(),
         name: CONFIG.remitente
       }
     );

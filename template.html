@@ -3,137 +3,85 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desde Uniguajira, una Navidad para compartir y sonreír</title>
+    <title>Abraza la Navidad con Uniguajira</title>
+    <style>
+      @media only screen and (max-width: 480px) {
+        .franja      { padding: 4px 13% 10px 13% !important; height: auto !important; }
+        .franja-nom  { font-size: 19px !important; line-height: 22px !important; }
+        .franja-txt  { font-size: 13px !important; line-height: 17px !important; padding-top: 6px !important; }
+      }
+    </style>
   </head>
 
   <!--
-    Plantilla basada en CI-F-07 (Plantilla para presentaciones institucionales).
-    Paleta: teal #00A5B2 · turquesa #00CBB0 · teal oscuro #007F89 · sol #FFB100 · buganvilla #D6338A
-    Imágenes incrustadas (inlineImages): cid:escena -> img/escena.jpg, cid:sellos -> img/sellos.png
+    Campaña Navidad 2026 – diseño de Comunicaciones (Canva "Plantilla campaña navidad 2026", 1080x1500)
+    cortado en 3 partes:
+      img/2026/arriba.jpg  (0–840 px)    logos, foto, título, moño y "¡Hola!"
+      img/2026/medio.jpg   (840–1100 px) fondo verde del regalo -> aquí va el texto personalizado
+      img/2026/abajo.jpg   (1100–1500 px) llamado a donar, fecha límite y puntos de entrega
+    Variables (ya formateadas desde Codigo.gs): imgBase, nombreFuncionario, nombreNino, descripcion, comunidad
   -->
 
-  <body style="margin:0; padding:0; background:#eef3f4; font-family:'Century Gothic', CenturyGothic, AppleGothic, 'URW Gothic', Arial, sans-serif;">
+  <body style="margin:0; padding:0; background:#ededed; -webkit-text-size-adjust:none; text-size-adjust:none;">
 
     <!-- Preheader -->
-    <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; color:#eef3f4; line-height:1px;">
+    <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; color:#ededed; line-height:1px;">
       <?= nombreNino ?> de la comunidad <?= comunidad ?> espera tu regalo esta Navidad.
     </div>
 
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef3f4;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ededed;">
       <tr>
-        <td align="center" style="padding:24px 12px;">
+        <td align="center" style="padding:20px 0;">
 
           <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
-                 style="width:100%; max-width:600px; background:#00A5B2; border-radius:16px; overflow:hidden;">
+                 style="width:100%; max-width:600px; background:#2a1a12;">
 
-            <!-- ============ ENCABEZADO ============ -->
-            <tr>
-              <td bgcolor="#00A5B2" style="background:#00A5B2; padding:30px 32px 6px 32px; color:#ffffff;">
-
-                <div style="font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#d9f6f3; font-weight:bold;">
-                  Dirección de Extensión y Proyección Social
-                </div>
-
-                <div style="font-size:30px; line-height:36px; font-weight:bold; padding-top:10px;">
-                  Desde Uniguajira, una Navidad
-                  <span style="color:#FFB100;">para compartir y sonreír</span>
-                </div>
-
-                <!-- Línea divisoria estilo CI-F-07 -->
-                <div style="width:120px; height:3px; background:#ffffff; margin:16px 0 14px 0; font-size:0; line-height:0;">&nbsp;</div>
-
-                <div style="font-size:15px; line-height:22px; color:#ffffff;">
-                  Únete a la campaña de donación de regalos para que en esta Navidad
-                  regales sonrisas y alegría a los niños y niñas de La Guajira.
-                </div>
-
-              </td>
-            </tr>
-
-            <!-- Escena institucional (edificio, sol, cactus con luces) -->
+            <!-- 1. Parte superior del diseño -->
             <tr>
               <td style="padding:0; line-height:0; font-size:0;">
-                <img src="cid:escena" width="600" alt="Universidad de La Guajira en Navidad"
+                <img src="<?= imgBase ?>arriba.jpg" width="600"
+                     alt="Abraza la Navidad con Uniguajira – ¡Hola!"
                      style="display:block; width:100%; max-width:600px; height:auto; border:0;">
               </td>
             </tr>
 
-            <!-- ============ TARJETA BLANCA (estilo diapositiva 2 de CI-F-07) ============ -->
+            <!-- 2. Franja personalizada: texto HTML sobre el fondo verde del regalo -->
             <tr>
-              <td bgcolor="#00A5B2" style="background:#00A5B2; padding:0 16px;">
+              <td class="franja" align="center" valign="middle" bgcolor="#1f3f2c"
+                  background="<?= imgBase ?>medio.jpg"
+                  style="background-color:#1f3f2c; background-image:url('<?= imgBase ?>medio.jpg'); background-repeat:no-repeat; background-position:center center; background-size:100% 100%; padding:6px 15% 16px 15%; height:122px; font-family:'Poppins', 'Montserrat', 'Segoe UI', Arial, Helvetica, sans-serif; color:#fff3d7; text-align:center;">
 
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"
-                       style="background:#ffffff; border-radius:0 0 18px 48px;">
-                  <tr>
-                    <td style="padding:30px 28px 32px 28px; color:#222222; font-size:15px; line-height:1.65;">
+                <div class="franja-nom" style="font-size:25px; line-height:28px; font-weight:bold; color:#fff3d7;">
+                  <?= nombreFuncionario ?>
+                </div>
 
-                      <p style="margin:0 0 14px 0; font-size:17px;">
-                        Hola <strong style="color:#007F89;"><?= nombreFuncionario ?></strong>,
-                      </p>
-
-                      <p style="margin:0 0 14px 0;">
-                        Mi nombre es <strong style="color:#D6338A;"><?= nombreNino ?></strong>. Soy
-                        <strong><?= String(sexo || '').trim().toUpperCase().charAt(0) === 'F' ? 'una niña' : 'un niño' ?></strong>
-                        de <strong><?= /^\d+$/.test(String(edad).trim()) ? String(edad).trim() + (String(edad).trim() === '1' ? ' año' : ' años') : edad ?></strong>
-                        y hago parte de la comunidad <strong><?= comunidad ?></strong>.
-                      </p>
-
-                      <p style="margin:0 0 22px 0;">
-                        Mi deseo es que todos los niños podamos disfrutar una Navidad
-                        llena de juegos y muchos regalos.
-                      </p>
-
-                      <!-- Llamado a la acción -->
-                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                          <td align="center" bgcolor="#FFB100"
-                              style="background:#FFB100; border-radius:30px; padding:14px 18px; color:#3a2a00; font-size:16px; font-weight:bold; line-height:22px;">
-                            ¡Hoy te invito a donar un regalo y despertar una sonrisa!
-                          </td>
-                        </tr>
-                      </table>
-
-                      <!-- Fecha y lugar -->
-                      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:22px;">
-                        <tr>
-                          <td style="padding:14px 16px; background:#e6f7f6; border-left:5px solid #00CBB0; border-radius:6px; font-size:14px; line-height:1.6;">
-                            <strong style="color:#007F89;">Fecha límite de entrega:</strong> <?= fechaLimite ?><br>
-                            <strong style="color:#007F89;">Lugar de entrega:</strong> <?= lugarEntrega ?>
-                          </td>
-                        </tr>
-                      </table>
-
-                      <p style="margin:26px 0 0 0;">
-                        Con gratitud,<br>
-                        <strong style="color:#007F89;">Dirección de Extensión y Proyección Social</strong><br>
-                        Universidad de La Guajira
-                      </p>
-
-                    </td>
-                  </tr>
-                </table>
+                <div class="franja-txt" style="font-size:16px; line-height:20px; color:#fff3d7; padding-top:8px;">
+                  Mi nombre es <strong><?= nombreNino ?></strong>.<br>
+                  Soy <?= descripcion ?> y hago parte de la comunidad <strong><?= comunidad ?></strong>.
+                </div>
 
               </td>
             </tr>
 
-            <!-- ============ PIE ============ -->
+            <!-- 3. Parte inferior del diseño -->
             <tr>
-              <td bgcolor="#00A8AE" style="background:#00A8AE; padding:18px 20px 20px 20px;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                  <tr>
-                    <td valign="middle" style="color:#ffffff; font-size:12px; line-height:18px;">
-                      <strong>Universidad de La Guajira</strong><br>
-                      Campaña Institucional <?= anio ?>
-                    </td>
-                    <td valign="middle" align="right" width="170" style="width:170px;">
-                      <img src="cid:sellos" width="170" alt="Universidad de La Guajira 50 años – Acreditada en Alta Calidad – ICONTEC – IQNet"
-                           style="display:block; width:170px; height:auto; border:0;">
-                    </td>
-                  </tr>
-                </table>
+              <td style="padding:0; line-height:0; font-size:0;">
+                <img src="<?= imgBase ?>abajo.jpg" width="600"
+                     alt="¡Hoy te invito a donar un regalo y despertar una sonrisa! Fecha límite: 30 de noviembre. Puntos de entrega: Dirección de Extensión y Proyección Social, Bloque Administrativo B Cristóbal Fonseca Siosi; Emisora institucional Uniguajira Estéreo, Calle 8 # 10-140."
+                     style="display:block; width:100%; max-width:600px; height:auto; border:0;">
               </td>
             </tr>
 
+          </table>
+
+          <!-- Pie en texto -->
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px;">
+            <tr>
+              <td align="center" style="padding:16px 20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:17px; color:#888888;">
+                Dirección de Extensión y Proyección Social · Universidad de La Guajira<br>
+                Km 3 + 354 Vía Riohacha – Maicao, Riohacha, La Guajira
+              </td>
+            </tr>
           </table>
 
         </td>
