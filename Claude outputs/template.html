@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abraza la Navidad con Uniguajira</title>
+  </head>
+
+  <!--
+    Campaña Navidad 2026 – diseño de Comunicaciones (Canva "Plantilla campaña navidad 2026", 1080x1500)
+    cortado en 3 partes:
+      img/2026/arriba.jpg  (0–840 px)    logos, foto, título, moño y "¡Hola!"
+      img/2026/medio.jpg   (840–1100 px) fondo verde del regalo -> aquí va el texto personalizado
+      img/2026/abajo.jpg   (1100–1500 px) llamado a donar, fecha límite y puntos de entrega
+    Variables (ya formateadas desde Codigo.gs): imgBase, nombreFuncionario, nombreNino, descripcion, comunidad
+  -->
+
+  <body style="margin:0; padding:0; background:#ededed; -webkit-text-size-adjust:none; text-size-adjust:none;">
+
+    <!-- Preheader -->
+    <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; color:#ededed; line-height:1px;">
+      <?= nombreNino ?> de la comunidad <?= comunidad ?> espera tu regalo esta Navidad.
+    </div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ededed;">
+      <tr>
+        <td align="center" style="padding:20px 0;">
+
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"
+                 style="width:100%; max-width:600px; background:#2a1a12;">
+
+            <!-- 1. Parte superior del diseño -->
+            <tr>
+              <td style="padding:0; line-height:0; font-size:0;">
+                <img src="<?= imgBase ?>arriba.jpg" width="600"
+                     alt="Abraza la Navidad con Uniguajira – ¡Hola!"
+                     style="display:block; width:100%; max-width:600px; height:auto; border:0;">
+              </td>
+            </tr>
+
+            <!-- 2. Franja personalizada: texto HTML sobre el fondo verde del regalo -->
+            <tr>
+              <td align="center" valign="middle" bgcolor="#1f3f2c"
+                  background="<?= imgBase ?>medio.jpg"
+                  style="background-color:#1f3f2c; background-image:url('<?= imgBase ?>medio.jpg'); background-repeat:no-repeat; background-position:center center; background-size:cover; padding:6px 90px 16px 90px; height:122px; font-family:'Poppins', 'Montserrat', 'Segoe UI', Arial, Helvetica, sans-serif; color:#fff3d7; text-align:center;">
+
+                <div style="font-size:28px; line-height:30px; font-weight:bold; color:#fff3d7;">
+                  <?= nombreFuncionario ?>
+                </div>
+
+                <div style="font-size:17px; line-height:22px; color:#fff3d7; padding-top:12px;">
+                  Mi nombre es <strong><?= nombreNino ?></strong>.<br>
+                  Soy <?= descripcion ?> y hago parte de la comunidad <strong><?= comunidad ?></strong>.
+                </div>
+
+              </td>
+            </tr>
+
+            <!-- 3. Parte inferior del diseño -->
+            <tr>
+              <td style="padding:0; line-height:0; font-size:0;">
+                <img src="<?= imgBase ?>abajo.jpg" width="600"
+                     alt="¡Hoy te invito a donar un regalo y despertar una sonrisa! Fecha límite: 30 de noviembre. Puntos de entrega: Dirección de Extensión y Proyección Social, Bloque Administrativo B Cristóbal Fonseca Siosi; Emisora institucional Uniguajira Estéreo, Calle 8 # 10-140."
+                     style="display:block; width:100%; max-width:600px; height:auto; border:0;">
+              </td>
+            </tr>
+
+          </table>
+
+          <!-- Pie en texto -->
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px;">
+            <tr>
+              <td align="center" style="padding:16px 20px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:17px; color:#888888;">
+                Dirección de Extensión y Proyección Social · Universidad de La Guajira<br>
+                Km 3 + 354 Vía Riohacha – Maicao, Riohacha, La Guajira
+              </td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
